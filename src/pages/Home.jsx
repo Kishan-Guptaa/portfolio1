@@ -26,6 +26,7 @@ import { projects } from '../data/projects';
 import { techStack } from '../data/techStack';
 
 import avatarImg from '../assets/images/avatar.jpg';
+import SpotifyActivity from '../components/SpotifyActivity';
 
 const Home = () => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
@@ -961,6 +962,9 @@ const Home = () => {
               />
             </div>
           </div>
+
+          {/* Spotify Activity Card */}
+          <SpotifyActivity />
         </div>
       </section>
 
