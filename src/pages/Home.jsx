@@ -11,7 +11,6 @@ import {
   Moon
 } from 'lucide-react';
 import { 
-  FaSpotify, 
   FaXTwitter, 
   FaLinkedin, 
   FaGithub, 
@@ -26,7 +25,6 @@ import { projects } from '../data/projects';
 import { techStack } from '../data/techStack';
 
 import avatarImg from '../assets/images/avatar.jpg';
-import SpotifyActivity from '../components/SpotifyActivity';
 
 const Home = () => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
@@ -197,6 +195,7 @@ const Home = () => {
             <span>|</span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>Currently building new things</span>
           </div>
+
         </div>
       </div>
 
@@ -962,9 +961,6 @@ const Home = () => {
               />
             </div>
           </div>
-
-          {/* Spotify Activity Card */}
-          <SpotifyActivity />
         </div>
       </section>
 

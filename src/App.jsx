@@ -28,7 +28,33 @@ function App() {
         minHeight: '100vh',
         opacity: isLoading ? 0 : 1,
         transition: 'opacity 0.5s ease',
+        position: 'relative'
       }}>
+        {/* Background Vertical Guide Lines */}
+        <div className="vertical-guide-line left" style={{
+          position: 'fixed',
+          left: 'calc(50% - 480px)', // Frames ~960px width
+          top: 0,
+          bottom: 0,
+          width: '1px',
+          borderLeft: '1px dashed var(--navbar-border)',
+          opacity: 'var(--guide-opacity, 0.3)',
+          zIndex: -1,
+          pointerEvents: 'none',
+          display: 'var(--guide-display, block)'
+        }}></div>
+        <div className="vertical-guide-line right" style={{
+          position: 'fixed',
+          right: 'calc(50% - 480px)',
+          top: 0,
+          bottom: 0,
+          width: '1px',
+          borderLeft: '1px dashed var(--navbar-border)',
+          opacity: 'var(--guide-opacity, 0.3)',
+          zIndex: -1,
+          pointerEvents: 'none',
+          display: 'var(--guide-display, block)'
+        }}></div>
         <Navbar />
         <main style={{ padding: '5rem 1rem 2rem', maxWidth: '1200px', margin: '0 auto', flexGrow: 1, width: '100%' }}>
           <Routes>
@@ -71,16 +97,30 @@ function App() {
         <Footer />
 
         <style>{`
+          :root {
+            --guide-opacity: 0.3; /* Grayish look via opacity on gray border */
+          }
+          .dark {
+            --guide-opacity: 0.8; /* Whiter look in dark mode */
+          }
           @media (max-width: 768px) {
             .mobile-home-btn {
               display: flex !important;
+            }
+            :root {
+              --guide-display: none;
+            }
+          }
+          @media (max-width: 1240px) {
+            .vertical-guide-line {
+              display: none !important;
             }
           }
           .mobile-home-btn:active {
             transform: scale(0.9);
           }
         `}</style>
-      </div>
+        </div>
     </>
   );
 }
