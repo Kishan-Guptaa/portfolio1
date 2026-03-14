@@ -665,11 +665,6 @@ const Home = () => {
         </div>
       </section>
 
-      <hr style={{ 
-        border: 'none', 
-        borderTop: '1px dashed var(--navbar-border)', 
-        margin: '4rem 0' 
-      }} />
 
       {/* Collaboration CTA Section */}
       <section style={{ marginBottom: '4rem', textAlign: 'center' }}>

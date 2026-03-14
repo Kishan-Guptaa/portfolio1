@@ -9,25 +9,27 @@ const Resume = () => {
 
   return (
     <div className="resume-container" style={{
-      maxWidth: '800px',
+      maxWidth: '700px',
       margin: '0 auto',
+      paddingTop: '2rem',
       paddingBottom: '6rem'
     }}>
       {/* Header */}
       <header className="resume-header" style={{ marginBottom: '3rem' }}>
         <h1 style={{
-          fontSize: '3.5rem',
-          fontWeight: '800',
+          fontSize: '2.5rem',
+          fontWeight: '700',
           marginBottom: '0.5rem',
-          letterSpacing: '-2px',
+          letterSpacing: '-0.5px',
           color: 'var(--text-primary)'
         }}>
           Resume
         </h1>
         <p style={{
-          fontSize: '1.2rem',
+          fontSize: '1.15rem',
           color: 'var(--text-secondary)',
-          margin: 0
+          margin: 0,
+          lineHeight: '1.6'
         }}>
           View and download my professional resume.
         </p>
@@ -134,8 +136,8 @@ const Resume = () => {
       <style>{`
         @media (max-width: 768px) {
           .resume-header h1 {
-            font-size: 2.5rem !important;
-            letter-spacing: -1px !important;
+            font-size: 2rem !important;
+            letter-spacing: -0.5px !important;
           }
           .pdf-viewer-container {
             height: 60vh !important;
