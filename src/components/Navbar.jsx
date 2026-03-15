@@ -98,6 +98,7 @@ const Navbar = () => {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <button 
+              className="search-toggle-desktop"
               onClick={() => setIsSearchOpen(true)}
               aria-label="Search"
               style={{
@@ -224,26 +225,6 @@ const Navbar = () => {
           gap: '1.5rem',
           zIndex: 99
         }}>
-          {/* Mobile Search Trigger */}
-          <div 
-            onClick={() => { setIsSearchOpen(true); setIsMenuOpen(false); }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              padding: '0.75rem 1rem',
-              backgroundColor: 'var(--hover-alpha)',
-              border: '1px dashed var(--navbar-border)',
-              borderRadius: '8px',
-              color: 'var(--text-secondary)',
-              cursor: 'pointer',
-              marginBottom: '0.5rem'
-            }}
-          >
-            <Search size={20} />
-            <span style={{ fontSize: '1rem' }}>Search projects, blogs...</span>
-          </div>
-
           {navLinks.map((link) => (
             <NavLink 
               key={link.path}
@@ -265,7 +246,7 @@ const Navbar = () => {
       {/* Mobile Styles via Style Tag (for simplicity in a single file) */}
       <style>{`
         @media (max-width: 768px) {
-          .desktop-links, .desktop-divider {
+          .desktop-links, .desktop-divider, .search-toggle-desktop {
             display: none !important;
           }
           .hamburger-toggle {
