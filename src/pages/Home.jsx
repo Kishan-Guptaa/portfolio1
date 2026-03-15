@@ -25,6 +25,8 @@ import { projects } from '../data/projects';
 import { techStack } from '../data/techStack';
 
 import avatarImg from '../assets/images/avatar.jpg';
+import ScrollReveal from '../components/ScrollReveal';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
@@ -41,16 +43,23 @@ const Home = () => {
       minHeight: '70vh',
       maxWidth: '800px',
       margin: '0 auto',
-      padding: '2rem 1rem'
+      padding: '2rem 1rem',
+      overflowX: 'hidden'
     }}>
       
       {/* Hero Section */}
-      <div className="home-hero-container" style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '3rem',
-        marginBottom: '3rem'
-      }}>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="home-hero-container" 
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '3rem',
+          marginBottom: '3rem'
+        }}
+      >
         <div className="avatar-container" style={{
           width: '130px',
           height: '130px',
@@ -197,10 +206,13 @@ const Home = () => {
           </div>
 
         </div>
-      </div>
+      </motion.div>
 
       {/* Social Links */}
-      <div 
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.8 }}
         className="social-links-container"
         style={{
           display: 'flex',
@@ -214,7 +226,7 @@ const Home = () => {
         <a href="https://www.instagram.com/kishan_n_09/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-link"><FaInstagram size={22} /></a>
         <a href="https://in.pinterest.com/kishanguptacode/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" className="social-link"><FaPinterest size={22} /></a>
         <a href="mailto:kishangupta.code@gmail.com" aria-label="Email" className="social-link"><FaEnvelope size={22} /></a>
-      </div>
+      </motion.div>
 
       <hr style={{ 
         border: 'none', 
@@ -223,87 +235,91 @@ const Home = () => {
       }} />
 
       {/* About Section */}
-      <section style={{ marginBottom: '4rem' }}>
-        <h2 style={{
-          fontSize: '2rem',
-          fontWeight: '700',
-          marginBottom: '1.5rem',
-          letterSpacing: '-0.5px'
-        }}>
-          About Me
-        </h2>
-        <div style={{
-          fontSize: '1.15rem',
-          color: 'var(--text-secondary)',
-          lineHeight: '1.8'
-        }}>
-          <p style={{ marginBottom: isAboutExpanded ? '1.5rem' : '0' }}>
-            Hello! I'm Kishan Gupta, an aspiring Full-Stack Developer passionate about creating modern and scalable web applications. 
-            I specialize in the MERN stack and focus on building responsive, user-friendly interfaces.
-          </p>
-          
-          <div style={{
-            display: 'grid',
-            gridTemplateRows: isAboutExpanded ? '1fr' : '0fr',
-            transition: 'grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+      <ScrollReveal>
+        <section style={{ marginBottom: '4rem' }}>
+          <h2 style={{
+            fontSize: '2rem',
+            fontWeight: '700',
+            marginBottom: '1.5rem',
+            letterSpacing: '-0.5px'
           }}>
-            <div style={{ overflow: 'hidden' }}>
-              <p style={{ marginBottom: '1.5rem' }}>
-                Along with development, I actively practice <strong style={{ color: 'var(--text-primary)'}}>Data Structures and Algorithms in Java</strong> to enhance my logical thinking and coding efficiency. 
-                I enjoy learning new technologies and continuously improving my development skills.
-              </p>
-              <p>
-                My journey into tech started with a curiosity about how the web works, which quickly snowballed into building full-stack platforms from scratch.
-                Whether I'm architecting a robust backend service or obsessing over pixel-perfect CSS animations, I love the entire process of bringing ideas to life.
-                Outside of coding, I'm usually at the gym, reading about tech, or optimizing my productivity setups.
-              </p>
+            About Me
+          </h2>
+          <div style={{
+            fontSize: '1.15rem',
+            color: 'var(--text-secondary)',
+            lineHeight: '1.8'
+          }}>
+            <p style={{ marginBottom: isAboutExpanded ? '1.5rem' : '0' }}>
+              Hello! I'm Kishan Gupta, an aspiring Full-Stack Developer passionate about creating modern and scalable web applications. 
+              I specialize in the MERN stack and focus on building responsive, user-friendly interfaces.
+            </p>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateRows: isAboutExpanded ? '1fr' : '0fr',
+              transition: 'grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+            }}>
+              <div style={{ overflow: 'hidden' }}>
+                <p style={{ marginBottom: '1.5rem' }}>
+                  Along with development, I actively practice <strong style={{ color: 'var(--text-primary)'}}>Data Structures and Algorithms in Java</strong> to enhance my logical thinking and coding efficiency. 
+                  I enjoy learning new technologies and continuously improving my development skills.
+                </p>
+                <p>
+                  My journey into tech started with a curiosity about how the web works, which quickly snowballed into building full-stack platforms from scratch.
+                  Whether I'm architecting a robust backend service or obsessing over pixel-perfect CSS animations, I love the entire process of bringing ideas to life.
+                  Outside of coding, I'm usually at the gym, reading about tech, or optimizing my productivity setups.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <button 
-            onClick={() => setIsAboutExpanded(!isAboutExpanded)}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.4rem',
-              backgroundColor: 'var(--hover-alpha)',
-              color: 'var(--text-primary)',
-              fontWeight: '600',
-              fontSize: '1rem',
-              padding: '0.6rem 1.2rem',
-              borderRadius: '20px',
-              marginTop: '1.5rem',
-              border: '1px solid var(--border-color)',
-              transition: 'all 0.2s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--text-primary)';
-              e.currentTarget.style.color = 'var(--bg-color)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--hover-alpha)';
-              e.currentTarget.style.color = 'var(--text-primary)';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
-          >
-            {isAboutExpanded ? 'Show less' : 'More about me'} 
-            {isAboutExpanded ? <FiChevronUp size={18} /> : <FiChevronDown size={18} />}
-          </button>
-        </div>
-      </section>
+            <button 
+              onClick={() => setIsAboutExpanded(!isAboutExpanded)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.4rem',
+                backgroundColor: 'var(--hover-alpha)',
+                color: 'var(--text-primary)',
+                fontWeight: '600',
+                fontSize: '1rem',
+                padding: '0.6rem 1.2rem',
+                borderRadius: '20px',
+                marginTop: '1.5rem',
+                border: '1px solid var(--border-color)',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--text-primary)';
+                e.currentTarget.style.color = 'var(--bg-color)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--hover-alpha)';
+                e.currentTarget.style.color = 'var(--text-primary)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              {isAboutExpanded ? 'Show less' : 'More about me'} 
+              {isAboutExpanded ? <FiChevronUp size={18} /> : <FiChevronDown size={18} />}
+            </button>
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* Tech Stack Section */}
       <section style={{ marginBottom: '4rem' }}>
-        <h2 style={{
-          fontSize: '2rem',
-          fontWeight: '700',
-          marginBottom: '2rem',
-          letterSpacing: '-0.5px'
-        }}>
-          Tech Stack
-        </h2>
+        <ScrollReveal>
+          <h2 style={{
+            fontSize: '2rem',
+            fontWeight: '700',
+            marginBottom: '2rem',
+            letterSpacing: '-0.5px'
+          }}>
+            Tech Stack
+          </h2>
+        </ScrollReveal>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
           {techStack.map((category, idx) => {
@@ -317,78 +333,81 @@ const Home = () => {
             }[category.category] || Code;
 
             return (
-              <div key={idx} style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1.25rem',
-                padding: '1.5rem',
-                border: '1px dashed var(--navbar-border)',
-                borderRadius: '16px',
-                backgroundColor: 'rgba(128, 128, 128, 0.02)',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(128, 128, 128, 0.05)';
-                e.currentTarget.style.borderColor = 'var(--text-primary)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(128, 128, 128, 0.02)';
-                e.currentTarget.style.borderColor = 'var(--navbar-border)';
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '8px',
-                    backgroundColor: 'var(--hover-alpha)',
-                    color: 'var(--text-primary)'
-                  }}>
-                    <IconComponent size={18} />
-                  </div>
-                  <h3 style={{ 
-                    fontSize: '1rem', 
-                    fontWeight: '600', 
-                    color: 'var(--text-primary)', 
-                    letterSpacing: '0.5px', 
-                    margin: 0, 
-                    textTransform: 'uppercase',
-                    opacity: 0.8
-                  }}>
-                    {category.category}
-                  </h3>
-                </div>
-                
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
-                  {category.skills.map((skill, sIdx) => (
-                    <span key={sIdx} style={{
-                      fontSize: '0.85rem',
-                      fontWeight: '500',
-                      padding: '0.4rem 1rem',
-                      backgroundColor: 'var(--bg-color)',
-                      color: 'var(--text-secondary)',
-                      borderRadius: '100px',
-                      border: '1px solid var(--border-color)',
-                      transition: 'all 0.2s ease',
-                      cursor: 'default'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--text-primary)';
-                      e.currentTarget.style.color = 'var(--text-primary)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--border-color)';
-                      e.currentTarget.style.color = 'var(--text-secondary)';
-                      e.currentTarget.style.transform = 'translateY(0)';
+              <ScrollReveal key={idx} delay={idx * 0.1}>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1.25rem',
+                  padding: '1.5rem',
+                  height: '100%',
+                  border: '1px dashed var(--navbar-border)',
+                  borderRadius: '16px',
+                  backgroundColor: 'rgba(128, 128, 128, 0.02)',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(128, 128, 128, 0.05)';
+                  e.currentTarget.style.borderColor = 'var(--text-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(128, 128, 128, 0.02)';
+                  e.currentTarget.style.borderColor = 'var(--navbar-border)';
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '8px',
+                      backgroundColor: 'var(--hover-alpha)',
+                      color: 'var(--text-primary)'
                     }}>
-                      {skill}
-                    </span>
-                  ))}
+                      <IconComponent size={18} />
+                    </div>
+                    <h3 style={{ 
+                      fontSize: '1rem', 
+                      fontWeight: '600', 
+                      color: 'var(--text-primary)', 
+                      letterSpacing: '0.5px', 
+                      margin: 0, 
+                      textTransform: 'uppercase',
+                      opacity: 0.8
+                    }}>
+                      {category.category}
+                    </h3>
+                  </div>
+                  
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
+                    {category.skills.map((skill, sIdx) => (
+                      <span key={sIdx} style={{
+                        fontSize: '0.85rem',
+                        fontWeight: '500',
+                        padding: '0.4rem 1rem',
+                        backgroundColor: 'var(--bg-color)',
+                        color: 'var(--text-secondary)',
+                        borderRadius: '100px',
+                        border: '1px solid var(--border-color)',
+                        transition: 'all 0.2s ease',
+                        cursor: 'default'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--text-primary)';
+                        e.currentTarget.style.color = 'var(--text-primary)';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--border-color)';
+                        e.currentTarget.style.color = 'var(--text-secondary)';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
@@ -402,88 +421,93 @@ const Home = () => {
 
       {/* Recent Posts Section */}
       <section style={{ marginBottom: '4rem' }}>
-        <h2 style={{
-          fontSize: '2rem',
-          fontWeight: '700',
-          marginBottom: '2rem',
-          letterSpacing: '-0.5px'
-        }}>
-          Recent Posts
-        </h2>
+        <ScrollReveal>
+          <h2 style={{
+            fontSize: '2rem',
+            fontWeight: '700',
+            marginBottom: '2rem',
+            letterSpacing: '-0.5px'
+          }}>
+            Recent Posts
+          </h2>
+        </ScrollReveal>
         
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {blogPosts.slice(0, 3).map(post => (
-            <article 
-              key={post.id} 
-              className="home-blog-row" 
-              onClick={() => window.open(post.url, '_blank')}
-            >
-              <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '2rem' }}>
-                <div style={{ 
-                  color: 'var(--text-secondary)', 
-                  fontSize: '0.9rem', 
-                  fontFamily: 'monospace',
-                  width: '120px',
-                  flexShrink: 0
-                }}>
-                  {post.date}
+          {blogPosts.slice(0, 3).map((post, idx) => (
+            <ScrollReveal key={post.id} delay={idx * 0.1}>
+              <article 
+                className="home-blog-row" 
+                onClick={() => window.open(post.url, '_blank')}
+              >
+                <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '2rem' }}>
+                  <div style={{ 
+                    color: 'var(--text-secondary)', 
+                    fontSize: '0.9rem', 
+                    fontFamily: 'monospace',
+                    width: '120px',
+                    flexShrink: 0
+                  }}>
+                    {post.date}
+                  </div>
+                  <h3 className="home-blog-title" style={{
+                    fontSize: '1.2rem',
+                    fontWeight: '600',
+                    color: 'var(--text-primary)',
+                    transition: 'color 0.2s ease',
+                    margin: 0
+                  }}>
+                    {post.title}
+                  </h3>
                 </div>
-                <h3 className="home-blog-title" style={{
-                  fontSize: '1.2rem',
-                  fontWeight: '600',
-                  color: 'var(--text-primary)',
-                  transition: 'color 0.2s ease',
-                  margin: 0
+                <div className="home-blog-arrow" style={{ 
+                  color: 'var(--text-secondary)', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  paddingLeft: '1rem',
+                  transition: 'transform 0.2s ease, color 0.2s ease'
                 }}>
-                  {post.title}
-                </h3>
-              </div>
-              <div className="home-blog-arrow" style={{ 
-                color: 'var(--text-secondary)', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                paddingLeft: '1rem',
-                transition: 'transform 0.2s ease, color 0.2s ease'
-              }}>
-                <FiArrowUpRight size={24} />
-              </div>
-            </article>
+                  <FiArrowUpRight size={24} />
+                </div>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div style={{ marginTop: '2.5rem', display: 'flex' }}>
-          <Link to="/blog" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            backgroundColor: 'transparent',
-            color: 'var(--text-primary)',
-            border: '1px dashed var(--navbar-border)',
-            fontWeight: '600',
-            fontSize: '1.05rem',
-            padding: '0.75rem 1.5rem',
-            borderRadius: '8px',
-            transition: 'all 0.2s ease',
-            textDecoration: 'none'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--text-primary)';
-            e.currentTarget.style.color = 'var(--bg-color)';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.gap = '0.8rem';
-            e.currentTarget.style.borderColor = 'var(--text-primary)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.color = 'var(--text-primary)';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.gap = '0.5rem';
-            e.currentTarget.style.borderColor = 'var(--navbar-border)';
-          }}>
-            View all posts <FiArrowRight size={20} />
-          </Link>
-        </div>
+        <ScrollReveal delay={0.3}>
+          <div style={{ marginTop: '2.5rem', display: 'flex' }}>
+            <Link to="/blog" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              backgroundColor: 'transparent',
+              color: 'var(--text-primary)',
+              border: '1px dashed var(--navbar-border)',
+              fontWeight: '600',
+              fontSize: '1.05rem',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              transition: 'all 0.2s ease',
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--text-primary)';
+              e.currentTarget.style.color = 'var(--bg-color)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.gap = '0.8rem';
+              e.currentTarget.style.borderColor = 'var(--text-primary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = 'var(--text-primary)';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.gap = '0.5rem';
+              e.currentTarget.style.borderColor = 'var(--navbar-border)';
+            }}>
+              View all posts <FiArrowRight size={20} />
+            </Link>
+          </div>
+        </ScrollReveal>
       </section>
 
       <hr style={{ 
@@ -494,14 +518,16 @@ const Home = () => {
 
       {/* Developer Persona Section */}
       <section style={{ marginBottom: '4rem' }}>
-        <h2 style={{
-          fontSize: '2rem',
-          fontWeight: '700',
-          marginBottom: '2rem',
-          letterSpacing: '-0.5px'
-        }}>
-          Developer Persona
-        </h2>
+        <ScrollReveal>
+          <h2 style={{
+            fontSize: '2rem',
+            fontWeight: '700',
+            marginBottom: '2rem',
+            letterSpacing: '-0.5px'
+          }}>
+            Developer Persona
+          </h2>
+        </ScrollReveal>
         
         <div style={{ 
           display: 'grid', 
@@ -509,62 +535,70 @@ const Home = () => {
           gap: '1.5rem' 
         }}>
           {/* Card 1 */}
-          <div className="persona-modern-card" style={{ border: '1px dashed var(--navbar-border)', backgroundColor: 'transparent' }}>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.75rem', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>The Mission</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
-              Building products that solve meaningful problems and designing highly scalable systems.
-            </p>
-          </div>
+          <ScrollReveal delay={0.1}>
+            <div className="persona-modern-card" style={{ border: '1px dashed var(--navbar-border)', backgroundColor: 'transparent', height: '100%' }}>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.75rem', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>The Mission</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
+                Building products that solve meaningful problems and designing highly scalable systems.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Card 2 */}
-          <div className="persona-modern-card" style={{ border: '1px dashed var(--navbar-border)', backgroundColor: 'transparent' }}>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.75rem', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>Core Strengths</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
-              An analytical problem-solving mindset with a deep focus on system design architecture.
-            </p>
-          </div>
+          <ScrollReveal delay={0.2}>
+            <div className="persona-modern-card" style={{ border: '1px dashed var(--navbar-border)', backgroundColor: 'transparent', height: '100%' }}>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.75rem', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>Core Strengths</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
+                An analytical problem-solving mindset with a deep focus on system design architecture.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Card 3 */}
-          <div className="persona-modern-card" style={{ border: '1px dashed var(--navbar-border)', backgroundColor: 'transparent' }}>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.75rem', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>Personal Values</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
-              Relentless continuous improvement, genuine curiosity, and choosing quality over shortcuts.
-            </p>
-          </div>
+          <ScrollReveal delay={0.3}>
+            <div className="persona-modern-card" style={{ border: '1px dashed var(--navbar-border)', backgroundColor: 'transparent', height: '100%' }}>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.75rem', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>Personal Values</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
+                Relentless continuous improvement, genuine curiosity, and choosing quality over shortcuts.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
         
-        <div style={{ marginTop: '2.5rem', display: 'flex' }}>
-          <Link to="/persona" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            backgroundColor: 'transparent',
-            color: 'var(--text-primary)',
-            border: '1px dashed var(--navbar-border)',
-            fontWeight: '600',
-            fontSize: '1.05rem',
-            padding: '0.75rem 1.5rem',
-            borderRadius: '8px',
-            transition: 'all 0.2s ease',
-            textDecoration: 'none'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--text-primary)';
-            e.currentTarget.style.color = 'var(--bg-color)';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.gap = '0.8rem';
-            e.currentTarget.style.borderColor = 'var(--text-primary)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.color = 'var(--text-primary)';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.gap = '0.5rem';
-            e.currentTarget.style.borderColor = 'var(--navbar-border)';
-          }}>
-            View full persona <FiArrowRight size={20} />
-          </Link>
-        </div>
+        <ScrollReveal delay={0.4}>
+          <div style={{ marginTop: '2.5rem', display: 'flex' }}>
+            <Link to="/persona" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              backgroundColor: 'transparent',
+              color: 'var(--text-primary)',
+              border: '1px dashed var(--navbar-border)',
+              fontWeight: '600',
+              fontSize: '1.05rem',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              transition: 'all 0.2s ease',
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--text-primary)';
+              e.currentTarget.style.color = 'var(--bg-color)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.gap = '0.8rem';
+              e.currentTarget.style.borderColor = 'var(--text-primary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = 'var(--text-primary)';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.gap = '0.5rem';
+              e.currentTarget.style.borderColor = 'var(--navbar-border)';
+            }}>
+              View full persona <FiArrowRight size={20} />
+            </Link>
+          </div>
+        </ScrollReveal>
       </section>
 
       <hr style={{ 
@@ -575,149 +609,158 @@ const Home = () => {
 
       {/* Featured Projects Section */}
       <section style={{ marginBottom: '4rem' }}>
-        <h2 style={{
-          fontSize: '2rem',
-          fontWeight: '700',
-          marginBottom: '2rem',
-          letterSpacing: '-0.5px'
-        }}>
-          Featured Projects
-        </h2>
+        <ScrollReveal>
+          <h2 style={{
+            fontSize: '2rem',
+            fontWeight: '700',
+            marginBottom: '2rem',
+            letterSpacing: '-0.5px'
+          }}>
+            Featured Projects
+          </h2>
+        </ScrollReveal>
 
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
           gap: '2rem' 
         }}>
-          {projects.slice(0, 3).map((project) => (
-            <div key={project.id} style={{
-              display: 'flex',
-              flexDirection: 'column',
-              border: '1px dashed var(--navbar-border)',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              backgroundColor: 'var(--bg-color)'
-            }}>
-              <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '700', letterSpacing: '-0.3px', color: 'var(--text-primary)' }}>{project.title}</h3>
-                  <div style={{ display: 'flex', gap: '0.75rem' }}>
-                    <a href={project.githubUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)', transition: 'color 0.2s ease' }} onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}>
-                      <FaGithub size={18} />
-                    </a>
-                    <a href={project.liveUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)', transition: 'color 0.2s ease' }} onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}>
-                      <FiArrowUpRight size={20} />
-                    </a>
+          {projects.slice(0, 3).map((project, idx) => (
+            <ScrollReveal key={project.id} delay={idx * 0.1}>
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                border: '1px dashed var(--navbar-border)',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                backgroundColor: 'var(--bg-color)'
+              }}>
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: '700', letterSpacing: '-0.3px', color: 'var(--text-primary)' }}>{project.title}</h3>
+                    <div style={{ display: 'flex', gap: '0.75rem' }}>
+                      <a href={project.githubUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)', transition: 'color 0.2s ease' }} onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}>
+                        <FaGithub size={18} />
+                      </a>
+                      <a href={project.liveUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--text-secondary)', transition: 'color 0.2s ease' }} onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}>
+                        <FiArrowUpRight size={20} />
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginTop: 'auto' }}>
+                    {project.tags.map(tag => (
+                      <span key={tag} style={{
+                        fontSize: '0.75rem',
+                        fontWeight: '500',
+                        padding: '0.2rem 0.6rem',
+                        backgroundColor: 'rgba(128, 128, 128, 0.05)',
+                        color: 'var(--text-secondary)',
+                        borderRadius: '100px',
+                        border: '1px dashed var(--navbar-border)'
+                      }}>
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-                
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginTop: 'auto' }}>
-                  {project.tags.map(tag => (
-                    <span key={tag} style={{
-                      fontSize: '0.75rem',
-                      fontWeight: '500',
-                      padding: '0.2rem 0.6rem',
-                      backgroundColor: 'rgba(128, 128, 128, 0.05)',
-                      color: 'var(--text-secondary)',
-                      borderRadius: '100px',
-                      border: '1px dashed var(--navbar-border)'
-                    }}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div style={{ marginTop: '2.5rem', display: 'flex' }}>
-          <Link to="/projects" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            backgroundColor: 'transparent',
-            color: 'var(--text-primary)',
-            border: '1px dashed var(--navbar-border)',
-            fontWeight: '600',
-            fontSize: '1.05rem',
-            padding: '0.75rem 1.5rem',
-            borderRadius: '8px',
-            transition: 'all 0.2s ease',
-            textDecoration: 'none'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--text-primary)';
-            e.currentTarget.style.color = 'var(--bg-color)';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.gap = '0.8rem';
-            e.currentTarget.style.borderColor = 'var(--text-primary)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.color = 'var(--text-primary)';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.gap = '0.5rem';
-            e.currentTarget.style.borderColor = 'var(--navbar-border)';
-          }}>
-            View all projects <FiArrowRight size={20} />
-          </Link>
-        </div>
+        <ScrollReveal delay={0.3}>
+          <div style={{ marginTop: '2.5rem', display: 'flex' }}>
+            <Link to="/projects" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              backgroundColor: 'transparent',
+              color: 'var(--text-primary)',
+              border: '1px dashed var(--navbar-border)',
+              fontWeight: '600',
+              fontSize: '1.05rem',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              transition: 'all 0.2s ease',
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--text-primary)';
+              e.currentTarget.style.color = 'var(--bg-color)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.gap = '0.8rem';
+              e.currentTarget.style.borderColor = 'var(--text-primary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = 'var(--text-primary)';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.gap = '0.5rem';
+              e.currentTarget.style.borderColor = 'var(--navbar-border)';
+            }}>
+              View all projects <FiArrowRight size={20} />
+            </Link>
+          </div>
+        </ScrollReveal>
       </section>
 
 
       {/* Collaboration CTA Section */}
-      <section style={{ marginBottom: '4rem', textAlign: 'center' }}>
-        <div style={{
-          padding: '4rem 2rem',
-          border: '1px dashed var(--navbar-border)',
-          borderRadius: '24px',
-          backgroundColor: 'var(--hover-alpha)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '1.5rem'
-        }}>
-          <h2 style={{
-            fontSize: '2.2rem',
-            fontWeight: '700',
-            color: 'var(--text-primary)',
-            letterSpacing: '-0.5px',
-            margin: 0,
-            opacity: 0.9
+      <ScrollReveal direction="up" distance={50}>
+        <section style={{ marginBottom: '4rem', textAlign: 'center' }}>
+          <div style={{
+            padding: '4rem 2rem',
+            border: '1px dashed var(--navbar-border)',
+            borderRadius: '24px',
+            backgroundColor: 'var(--hover-alpha)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '1.5rem'
           }}>
-            Are You Still Thinking of Collaborating?
-          </h2>
-          <button 
-            onClick={() => setIsModalOpen(true)}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.6rem',
-              backgroundColor: 'var(--text-primary)',
-              color: 'var(--bg-color)',
+            <h2 style={{
+              fontSize: '2.2rem',
               fontWeight: '700',
-              fontSize: '1.1rem',
-              padding: '0.8rem 2rem',
-              borderRadius: '12px',
-              border: '1px dashed var(--navbar-border)',
-              cursor: 'pointer',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = 'scale(1.05)';
-              e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.2)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-            }}
-          >
-            Connect Here!
-          </button>
-        </div>
-      </section>
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.5px',
+              margin: 0,
+              opacity: 0.9
+            }}>
+              Are You Still Thinking of Collaborating?
+            </h2>
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                backgroundColor: 'var(--text-primary)',
+                color: 'var(--bg-color)',
+                fontWeight: '700',
+                fontSize: '1.1rem',
+                padding: '0.8rem 2rem',
+                borderRadius: '12px',
+                border: '1px dashed var(--navbar-border)',
+                cursor: 'pointer',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.2)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+              }}
+            >
+              Connect Here!
+            </button>
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* Booking Modal */}
       {isModalOpen && (

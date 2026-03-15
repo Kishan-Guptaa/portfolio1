@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ScrollReveal from '../components/ScrollReveal';
 
 // ── POETRY DATA ──────────────────────────────────────────────────────────────
 const poems = [
@@ -120,14 +121,16 @@ const About = () => {
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem 1rem' }}>
 
       {/* Page Header */}
-      <div style={{ marginBottom: '3rem' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: '700', letterSpacing: '-1px', marginBottom: '0.75rem' }}>
-          Know Me More <span style={{ color: 'red' }}>♥</span>
-        </h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: '1.7' }}>
-          Curated thoughts and late-night sounds.
-        </p>
-      </div>
+      <ScrollReveal direction="down">
+        <div style={{ marginBottom: '3rem' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: '700', letterSpacing: '-1px', marginBottom: '0.75rem' }}>
+            Know Me More <span style={{ color: 'red' }}>♥</span>
+          </h1>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: '1.7' }}>
+            Curated thoughts and late-night sounds.
+          </p>
+        </div>
+      </ScrollReveal>
 
       <hr style={{ border: 'none', borderTop: '1px dashed var(--navbar-border)', marginBottom: '3rem' }} />
 
@@ -164,8 +167,10 @@ const About = () => {
           gap: '1.5rem',
           alignItems: 'start'
         }}>
-          {filtered.map(poem => (
-            <PoemCard key={poem.id} poem={poem} />
+          {filtered.map((poem, idx) => (
+            <ScrollReveal key={poem.id} delay={idx * 0.1}>
+              <PoemCard poem={poem} />
+            </ScrollReveal>
           ))}
         </div>
       </section>

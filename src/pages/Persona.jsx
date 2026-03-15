@@ -1,5 +1,5 @@
-import React from 'react';
 import { FiBookOpen } from 'react-icons/fi';
+import ScrollReveal from '../components/ScrollReveal';
 
 const Persona = () => {
   const sections = [
@@ -64,63 +64,69 @@ const Persona = () => {
       padding: '2rem 1rem',
       minHeight: '70vh'
     }}>
-      <h1 style={{
-        fontSize: '3rem',
-        fontWeight: '700',
-        marginBottom: '4rem',
-        letterSpacing: '-1px'
-      }}>
-        Developer Persona
-      </h1>
+      <ScrollReveal direction="down">
+        <h1 style={{
+          fontSize: '3rem',
+          fontWeight: '700',
+          marginBottom: '4rem',
+          letterSpacing: '-1px'
+        }}>
+          Developer Persona
+        </h1>
+      </ScrollReveal>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
         {sections.map((section, idx) => (
-          <section key={idx}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '40px',
-                height: '40px',
-                borderRadius: '8px',
-                backgroundColor: 'rgba(128, 128, 128, 0.1)',
-                border: '1px dashed var(--navbar-border)',
-                color: 'var(--text-secondary)'
-              }}>
-                <FiBookOpen size={18} />
-              </div>
-              <h2 className="section-title" style={{ fontSize: '1.8rem', fontWeight: '700', letterSpacing: '-0.5px' }}>
-                {section.title}
-              </h2>
-            </div>
-            
-            <div className="persona-grid" style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-              gap: '1.5rem' 
-            }}>
-              {section.items.map((item, itemIdx) => (
-                <div key={itemIdx} className="persona-modern-card" style={{ border: '1px dashed var(--navbar-border)' }}>
-                  <h3 style={{ 
-                    fontSize: '1.15rem', 
-                    fontWeight: '600', 
-                    color: 'var(--text-primary)', 
-                    marginBottom: '0.4rem' 
-                  }}>
-                    {item.title}
-                  </h3>
-                  <p style={{ 
-                    color: 'var(--text-secondary)', 
-                    fontSize: '0.95rem', 
-                    lineHeight: '1.5' 
-                  }}>
-                    {item.desc}
-                  </p>
+          <ScrollReveal key={idx} distance={40}>
+            <section>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '8px',
+                  backgroundColor: 'rgba(128, 128, 128, 0.1)',
+                  border: '1px dashed var(--navbar-border)',
+                  color: 'var(--text-secondary)'
+                }}>
+                  <FiBookOpen size={18} />
                 </div>
-              ))}
-            </div>
-          </section>
+                <h2 className="section-title" style={{ fontSize: '1.8rem', fontWeight: '700', letterSpacing: '-0.5px' }}>
+                  {section.title}
+                </h2>
+              </div>
+              
+              <div className="persona-grid" style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+                gap: '1.5rem' 
+              }}>
+                {section.items.map((item, itemIdx) => (
+                  <ScrollReveal key={itemIdx} delay={itemIdx * 0.1} distance={20}>
+                    <div className="persona-modern-card" style={{ border: '1px dashed var(--navbar-border)', height: '100%' }}>
+                      <h3 style={{ 
+                        fontSize: '1.15rem', 
+                        fontWeight: '600', 
+                        color: 'var(--text-primary)', 
+                        marginBottom: '0.4rem' 
+                      }}>
+                        {item.title}
+                      </h3>
+                      <p style={{ 
+                        color: 'var(--text-secondary)', 
+                        fontSize: '0.95rem', 
+                        lineHeight: '1.5' 
+                      }}>
+                        {item.desc}
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </section>
+          </ScrollReveal>
         ))}
       </div>
 
