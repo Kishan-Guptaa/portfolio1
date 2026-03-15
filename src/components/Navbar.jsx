@@ -115,14 +115,12 @@ const Navbar = () => {
 
                   document.documentElement.animate(
                     {
-                      clipPath: isDarkMode ? clipPath.reverse() : clipPath
+                      clipPath: clipPath
                     },
                     {
-                      duration: 700,
+                      duration: 600,
                       easing: "cubic-bezier(0.4, 0, 0.2, 1)",
-                      pseudoElement: isDarkMode
-                        ? "::view-transition-old(root)"
-                        : "::view-transition-new(root)",
+                      pseudoElement: "::view-transition-new(root)",
                     }
                   );
                 });

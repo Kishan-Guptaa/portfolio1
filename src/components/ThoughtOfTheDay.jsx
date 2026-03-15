@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { Lightbulb } from 'lucide-react';
 
 const thoughts = [
-  "Code is like humor. When you have to explain it, it's bad.",
-  "First, solve the problem. Then, write the code.",
-  "Make it work, make it right, make it fast.",
-  "Clean code always looks like it was written by someone who cares.",
-  "Simplicity is the soul of efficiency.",
-  "Before software can be reusable it first has to be usable.",
-  "It's not a bug. It's an undocumented feature!",
-  "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-  "Experience is the name everyone gives to their mistakes.",
-  "Programming isn't about what you know; it's about what you can figure out."
+  "Code is like humor. When you have to explain it, it's bad. — Cory House",
+  "First, solve the problem. Then, write the code. — John Johnson",
+  "Clean code always looks like it was written by someone who cares. — Robert C. Martin",
+  "Change is the law of the universe. You can be a millionaire, or a pauper in an instant. — Bhagavad Gita",
+  "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions. — Bhagavad Gita",
+  "Man is made by his belief. As he believes, so he is. — Bhagavad Gita",
+  "A person can rise through the efforts of his own mind; or draw himself down. — Bhagavad Gita",
+  "Dharma is that which sustains the world. — Mahabharat",
+  "True victory is the victory over one's own self. — Mahabharat",
+  "Forgiveness is the strength of the virtuous. — Mahabharat",
+  "What is here is found elsewhere. What is not here is nowhere else. — Mahabharat"
 ];
 
 const ThoughtOfTheDay = () => {
