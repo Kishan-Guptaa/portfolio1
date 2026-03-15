@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, Search } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import SearchOverlay from './SearchOverlay';
 import avatarImg from '../assets/images/avatar.jpg';
 
 const Navbar = () => {
   const { isDarkMode, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  // Keyboard shortcut for search
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -83,6 +97,22 @@ const Navbar = () => {
           }}></div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+              aria-label="Search"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '0.5rem',
+                borderRadius: '8px',
+                backgroundColor: 'var(--hover-alpha)',
+                color: 'var(--text-primary)',
+              }}
+            >
+              <Search size={20} />
+            </button>
+
             <button 
               onClick={(e) => {
                 if (!document.startViewTransition) {
@@ -194,6 +224,26 @@ const Navbar = () => {
           gap: '1.5rem',
           zIndex: 99
         }}>
+          {/* Mobile Search Trigger */}
+          <div 
+            onClick={() => { setIsSearchOpen(true); setIsMenuOpen(false); }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              padding: '0.75rem 1rem',
+              backgroundColor: 'var(--hover-alpha)',
+              border: '1px dashed var(--navbar-border)',
+              borderRadius: '8px',
+              color: 'var(--text-secondary)',
+              cursor: 'pointer',
+              marginBottom: '0.5rem'
+            }}
+          >
+            <Search size={20} />
+            <span style={{ fontSize: '1rem' }}>Search projects, blogs...</span>
+          </div>
+
           {navLinks.map((link) => (
             <NavLink 
               key={link.path}
@@ -226,6 +276,8 @@ const Navbar = () => {
           transform: scale(1.1) rotate(5deg);
         }
       `}</style>
+      
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </nav>
   );
 };

@@ -256,3 +256,124 @@ button {
   font-weight: bold;
   transform: rotate(1deg);
 }
+
+/* Global Search Overlay */
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  padding-top: 15vh;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.dark .search-overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.search-content {
+  width: 90%;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+  background: var(--bg-color);
+  border: 1px dashed var(--navbar-border);
+  border-radius: 16px;
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: var(--text-primary);
+}
+
+.search-results {
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Custom Scrollbar for Results */
+.search-results::-webkit-scrollbar {
+  width: 4px;
+}
+.search-results::-webkit-scrollbar-track {
+  background: transparent;
+}
+.search-results::-webkit-scrollbar-thumb {
+  background: var(--navbar-border);
+  border-radius: 10px;
+}
+
+.search-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.search-category-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background: var(--hover-alpha);
+  border-color: var(--navbar-border);
+  transform: translateX(4px);
+}
+
+.search-no-results {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .search-overlay {
+    padding-top: 10vh;
+  }
+}
